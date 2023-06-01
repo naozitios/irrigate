@@ -8,11 +8,14 @@ export default async function getDoument(collection, id) {
     let result = null;
     let error = null;
 
+    const docRef1 = doc(db, "personalized_quotes", "user-id");
+    const docSnap = await getDoc(docRef1);
+
     try {
         result = await getDoc(docRef);
     } catch (e) {
         error = e;
     }
 
-    return { result, error };
+    return result;
 }
