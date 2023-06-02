@@ -1,5 +1,6 @@
 'use client'
 import './globals.css'
+import Navbar from '../components/Navbar'
 import { AuthContextProvider } from '@/context/AuthContext'
 
 export default function RootLayout({ children }) {
@@ -12,7 +13,8 @@ export default function RootLayout({ children }) {
       <head />
       <body>
         <AuthContextProvider>
-          {children}
+          <Navbar/>
+          <div className="bg-white">{children}</div>
         </AuthContextProvider>
       </body>
     </html>
