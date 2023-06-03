@@ -18,42 +18,35 @@ import {
 } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Dashboard", href: "#", current: true },
-  { name: "Team", href: "#", current: false },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
+  { name: "Home", href: "#", current: true },
+  { name: "About", href: "#", current: false },
+  { name: "Feedback", href: "#", current: false },
 ];
 
 const solutions = [
   {
-    name: "Analytics",
-    description: "Get a better understanding of your traffic",
-    href: "#",
-    icon: ChartPieIcon,
-  },
-  {
-    name: "Engagement",
-    description: "Speak directly to your customers",
-    href: "#",
-    icon: CursorArrowRaysIcon,
-  },
-  {
-    name: "Security",
-    description: "Your customers' data will be safe and secure",
-    href: "#",
-    icon: FingerPrintIcon,
-  },
-  {
-    name: "Integrations",
+    name: "Explore the water bodies",
     description: "Connect with third-party tools",
     href: "#",
     icon: SquaresPlusIcon,
   },
   {
-    name: "Automations",
-    description: "Build strategic funnels that will convert",
+    name: "Wisdom well",
+    description: "Get a better understanding of your traffic",
     href: "#",
-    icon: ArrowPathIcon,
+    icon: ChartPieIcon,
+  },
+  {
+    name: "Wisdom river",
+    description: "Speak directly to your customers",
+    href: "#",
+    icon: CursorArrowRaysIcon,
+  },
+  {
+    name: "Customize my river",
+    description: "Your customers' data will be safe and secure",
+    href: "#",
+    icon: FingerPrintIcon,
   },
 ];
 
@@ -66,7 +59,7 @@ export default function Example() {
   const logged = true;
 
   return (
-    <Disclosure as="nav" className="bg-gray-800">
+    <Disclosure as="nav" className="bg-gray-800 ... sticky top-0">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -112,6 +105,64 @@ export default function Example() {
                         {item.name}
                       </a>
                     ))}
+
+                    <Popover className="relative">
+                      <Popover.Button
+                        className={classNames(
+                          "text-gray-300 hover:bg-gray-700 hover:text-white",
+                          "rounded-md px-3 py-2 text-sm font-medium"
+                        )}
+                      >
+                        <div style={{ display: "flex" }}>
+                          <span>Water source</span>
+                          <ChevronDownIcon
+                            className="h-5 w-5"
+                            aria-hidden="true"
+                          />
+                        </div>
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
+                      >
+                        <Popover.Panel className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
+                          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                            <div className="p-4">
+                              {solutions.map((item) => (
+                                <div
+                                  key={item.name}
+                                  className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50"
+                                >
+                                  <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                    <item.icon
+                                      className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                                      aria-hidden="true"
+                                    />
+                                  </div>
+                                  <div>
+                                    <a
+                                      href={item.href}
+                                      className="font-semibold text-gray-900"
+                                    >
+                                      {item.name}
+                                      <span className="absolute inset-0" />
+                                    </a>
+                                    <p className="mt-1 text-gray-600">
+                                      {item.description}
+                                    </p>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </Popover>
                   </div>
                 </div>
               </div>
@@ -195,55 +246,7 @@ export default function Example() {
               </div>
             </div>
           </div>
-
           <Disclosure.Panel className="sm:hidden">
-            <Popover className="relative">
-              <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-                <span>Solutions</span>
-                <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
-              </Popover.Button>
-              <Transition
-                as={Fragment}
-                enter="transition ease-out duration-200"
-                enterFrom="opacity-0 translate-y-1"
-                enterTo="opacity-100 translate-y-0"
-                leave="transition ease-in duration-150"
-                leaveFrom="opacity-100 translate-y-0"
-                leaveTo="opacity-0 translate-y-1"
-              >
-                <Popover.Panel className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
-                  <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
-                    <div className="p-4">
-                      {solutions.map((item) => (
-                        <div
-                          key={item.name}
-                          className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50"
-                        >
-                          <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                            <item.icon
-                              className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-                              aria-hidden="true"
-                            />
-                          </div>
-                          <div>
-                            <a
-                              href={item.href}
-                              className="font-semibold text-gray-900"
-                            >
-                              {item.name}
-                              <span className="absolute inset-0" />
-                            </a>
-                            <p className="mt-1 text-gray-600">
-                              {item.description}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </Popover.Panel>
-              </Transition>
-            </Popover>
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
                 <Disclosure.Button
@@ -261,6 +264,59 @@ export default function Example() {
                   {item.name}
                 </Disclosure.Button>
               ))}
+              <Popover className="relative">
+                <Popover.Button
+                  className={classNames(
+                    "text-gray-300 hover:bg-gray-700 hover:text-white",
+                    "block rounded-md px-3 py-2 text-base font-medium"
+                  )}
+                >
+                  <div style={{ display: "flex" }}>
+                    <span>Solutions</span>
+                    <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                </Popover.Button>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-200"
+                  enterFrom="opacity-0 translate-y-1"
+                  enterTo="opacity-100 translate-y-0"
+                  leave="transition ease-in duration-150"
+                  leaveFrom="opacity-100 translate-y-0"
+                  leaveTo="opacity-0 translate-y-1"
+                >
+                  <Popover.Panel className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-1/2 px-4">
+                    <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+                      <div className="p-4">
+                        {solutions.map((item) => {
+                          if (item.name === "Wisdom river") {
+                            if (logged) {
+                              console.log(typeof item.name)
+                              return (
+                                <div
+                                  key={item.name}
+                                  className="group relative flex gap-x-6 rounded-lg p-4 opacity-50 hover:bg-gray-50"
+                                > 
+                                  {/* Render Wisdom River component with reduced opacity */}
+                                </div>
+                              );
+                            }
+                          } else {
+                            return (
+                              <div
+                                key={item.name}
+                                className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50"
+                              >
+                                {/* Render other components */}
+                              </div>
+                            );
+                          }
+                        })}
+                      </div>
+                    </div>
+                  </Popover.Panel>
+                </Transition>
+              </Popover>
             </div>
           </Disclosure.Panel>
         </>
